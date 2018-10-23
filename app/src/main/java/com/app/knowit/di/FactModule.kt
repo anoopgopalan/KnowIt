@@ -3,6 +3,7 @@ package com.app.knowit.di
 import com.app.knowit.data.FactApi
 import com.app.knowit.data.FactRepository
 import com.app.knowit.data.FactRetrofitApi
+import com.app.knowit.ui.viewmodel.FactViewModelProvideFactory
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -31,6 +32,12 @@ class FactModule {
     @Singleton
     fun providesFActRepository(factApi: FactApi): FactRepository {
         return FactRepository(factApi)
+    }
+
+    @Provides
+    @Singleton
+    fun providesFactViewModelProviderFactory(factRepository: FactRepository): FactViewModelProvideFactory {
+        return FactViewModelProvideFactory(factRepository)
     }
 
 }
